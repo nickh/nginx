@@ -222,6 +222,10 @@ ngx_http_parse_request_line(ngx_http_request_t *r, ngx_buf_t *b)
                         r->method = NGX_HTTP_TRACE;
                     }
 
+                    if (ngx_str5cmp(m, 'M', 'E', 'R', 'G', 'E')) {
+                        r->method = NGX_HTTP_MERGE;
+                    }
+
                     break;
 
                 case 6:
@@ -232,6 +236,11 @@ ngx_http_parse_request_line(ngx_http_request_t *r, ngx_buf_t *b)
 
                     if (ngx_str6cmp(m, 'U', 'N', 'L', 'O', 'C', 'K')) {
                         r->method = NGX_HTTP_UNLOCK;
+                        break;
+                    }
+
+                    if (ngx_str6cmp(m, 'R', 'E', 'P', 'O', 'R', 'T')) {
+                        r->method = NGX_HTTP_REPORT;
                         break;
                     }
 
@@ -249,6 +258,11 @@ ngx_http_parse_request_line(ngx_http_request_t *r, ngx_buf_t *b)
                     if (ngx_str8cmp(m, 'P', 'R', 'O', 'P', 'F', 'I', 'N', 'D'))
                     {
                         r->method = NGX_HTTP_PROPFIND;
+                    }
+
+                    if (ngx_str8cmp(m, 'C', 'H', 'E', 'C', 'K', 'O', 'U', 'T'))
+                    {
+                        r->method = NGX_HTTP_CHECKOUT;
                     }
 
                     break;
